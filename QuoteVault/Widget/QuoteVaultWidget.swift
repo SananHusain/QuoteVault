@@ -8,18 +8,38 @@
 import SwiftUI
 import WidgetKit
 
-
 @main
 struct QuoteVaultWidget: Widget {
-    let kind: String = "QuoteVaultWidget"
+
+    let kind = "QuoteVaultWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(
             kind: kind,
             provider: QuoteProvider()
         ) { entry in
-            QuoteWidgetView(entry: entry)
+            if #available(iOS 17.0, *) {
+                QuoteVaultWidgetView(entry: entry)
+                    .containerBackground(
+                        LinearGradient(
+                            colors: [.purple, .blue],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        for: .widget
+                    )
+            } else {
+                QuoteVaultWidgetView(entry: entry)
+                    .background(
+                        LinearGradient(
+                            colors: [.purple, .blue],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            }
         }
+
         .configurationDisplayName("Quote of the Day")
         .description("Daily inspiration from QuoteVault")
         .supportedFamilies([.systemSmall, .systemMedium])

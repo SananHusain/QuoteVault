@@ -1,84 +1,151 @@
-//
-//  QuoteVaultWidget.swift
-//  QuoteVaultWidget
-//
-//  Created by Sanan Husain on 14/01/26.
-//
-
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+// MARK: - Shared Store (App Group)
+
+struct WidgetQuoteStore {
+
+    static let suite = UserDefaults(
+        suiteName: "group.com.sananhusain.quotevault"
+    )
+
+    static func load() -> (text: String, author: String) {
+        let text = suite?.string(forKey: "widget_quote_text")
+            ?? "Stay inspired ✨"
+        let author = suite?.string(forKey: "widget_quote_author")
+            ?? "QuoteVault"
+        return (text, author)
     }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
-    }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
-struct SimpleEntry: TimelineEntry {
+// MARK: - Timeline Entry
+
+struct QuoteEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let quote: String
+    let author: String
 }
 
-struct QuoteVaultWidgetEntryView : View {
-    var entry: Provider.Entry
+// MARK: - Provider
+
+struct QuoteProvider: TimelineProvider {
+
+    func placeholder(in context: Context) -> QuoteEntry {
+        QuoteEntry(
+            date: Date(),
+            quote: "Believe in yourself.",
+            author: "QuoteVault"
+        )
+    }
+
+    func getSnapshot(
+        in context: Context,
+        completion: @escaping (QuoteEntry) -> Void
+    ) {
+        let data = WidgetQuoteStore.load()
+        completion(
+            QuoteEntry(
+                date: Date(),
+                quote: data.text,
+                author: data.author
+            )
+        )
+    }
+
+    func getTimeline(
+        in context: Context,
+        completion: @escaping (Timeline<QuoteEntry>) -> Void
+    ) {
+        let data = WidgetQuoteStore.load()
+
+        let entry = QuoteEntry(
+            date: Date(),
+            quote: data.text,
+            author: data.author
+        )
+
+        // Update once per day
+        let nextUpdate = Calendar.current.date(
+            byAdding: .day,
+            value: 1,
+            to: Date()
+        )!
+
+        completion(
+            Timeline(
+                entries: [entry],
+                policy: .after(nextUpdate)
+            )
+        )
+    }
+}
+
+// MARK: - Widget View
+
+struct QuoteVaultWidgetView: View {
+
+    let entry: QuoteEntry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+        VStack(spacing: 8) {
+            Text("“\(entry.quote)”")
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .lineLimit(4)
 
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text("— \(entry.author)")
+                .font(.caption)
+                .foregroundColor(.white.opacity(0.85))
+        }
+        .padding()
+        .widgetBackground()   // ✅ ALWAYS APPLIED
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func widgetBackground() -> some View {
+        if #available(iOS 17.0, *) {
+            self.containerBackground(
+                LinearGradient(
+                    colors: [.purple, .blue],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                for: .widget
+            )
+        } else {
+            self.background(
+                LinearGradient(
+                    colors: [.purple, .blue],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
         }
     }
 }
 
-//struct QuoteVaultWidget: Widget {
-//    let kind: String = "QuoteVaultWidget"
-//
-//    var body: some WidgetConfiguration {
-//        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-//            if #available(iOS 17.0, *) {
-//                QuoteVaultWidgetEntryView(entry: entry)
-//                    .containerBackground(.fill.tertiary, for: .widget)
-//            } else {
-//                QuoteVaultWidgetEntryView(entry: entry)
-//                    .padding()
-//                    .background()
-//            }
-//        }
-//        .configurationDisplayName("My Widget")
-//        .description("This is an example widget.")
-//    }
-//}
 
-#Preview(as: .systemSmall) {
-    QuoteVaultWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+
+
+// MARK: - Widget Config
+
+//@main
+struct QuoteVaultWidget: Widget {
+
+    let kind = "QuoteVaultWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(
+            kind: kind,
+            provider: QuoteProvider()
+        ) { entry in
+            QuoteVaultWidgetView(entry: entry)
+        }
+        .configurationDisplayName("Quote of the Day")
+        .description("Daily inspiration from QuoteVault")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
 }

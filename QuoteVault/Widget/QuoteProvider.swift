@@ -5,13 +5,13 @@
 //  Created by Sanan Husain on 14/01/26.
 //
 
-
 import WidgetKit
 import SwiftUI
 
 struct QuoteEntry: TimelineEntry {
     let date: Date
-    let quote: Quote
+    let quote: String
+    let author: String
 }
 
 struct QuoteProvider: TimelineProvider {
@@ -19,31 +19,39 @@ struct QuoteProvider: TimelineProvider {
     func placeholder(in context: Context) -> QuoteEntry {
         QuoteEntry(
             date: Date(),
-            quote: Quote(
-                id: UUID(),
-                text: "Stay hungry, stay foolish.",
-                author: "Steve Jobs",
-                category: "Motivation"
-            )
+            quote: "Believe in yourself.",
+            author: "QuoteVault"
         )
     }
 
     func getSnapshot(in context: Context, completion: @escaping (QuoteEntry) -> Void) {
-        let quote = WidgetQuoteStore.load() ?? placeholder(in: context).quote
-        completion(QuoteEntry(date: Date(), quote: quote))
+        let data = WidgetQuoteStore.load()
+        completion(
+            QuoteEntry(
+                date: Date(),
+                quote: data.text,
+                author: data.author
+            )
+        )
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<QuoteEntry>) -> Void) {
-        let quote = WidgetQuoteStore.load() ?? placeholder(in: context).quote
+        let data = WidgetQuoteStore.load()
 
-        let nextUpdate = Calendar.current.startOfDay(
-            for: Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        let entry = QuoteEntry(
+            date: Date(),
+            quote: data.text,
+            author: data.author
         )
 
-        let entry = QuoteEntry(date: Date(), quote: quote)
+        // Update after 24 hours
+        let nextUpdate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
 
         completion(
-            Timeline(entries: [entry], policy: .after(nextUpdate))
+            Timeline(
+                entries: [entry],
+                policy: .after(nextUpdate)
+            )
         )
     }
 }

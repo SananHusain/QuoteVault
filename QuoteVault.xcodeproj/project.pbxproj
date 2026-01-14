@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		589FCFD32F1817D400946FE6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58671C912F17DC6E0020DB7C /* WidgetKit.framework */; };
+		589FCFD42F1817D400946FE6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58671C932F17DC6F0020DB7C /* SwiftUI.framework */; };
+		589FCFE32F1817D600946FE6 /* QuoteVaultWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 589FCFD22F1817D400946FE6 /* QuoteVaultWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		58C1388B2F16CDD6008DD482 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 58C1388A2F16CDD6008DD482 /* Supabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		589FCFE12F1817D600946FE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58C138122F16BD0F008DD482 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 589FCFD12F1817D400946FE6;
+			remoteInfo = QuoteVaultWidgetExtension;
+		};
 		58C138282F16BD11008DD482 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 58C138122F16BD0F008DD482 /* Project object */;
@@ -34,6 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				589FCFE32F1817D600946FE6 /* QuoteVaultWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,12 +54,21 @@
 /* Begin PBXFileReference section */
 		58671C912F17DC6E0020DB7C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		58671C932F17DC6F0020DB7C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		589FCFD22F1817D400946FE6 /* QuoteVaultWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuoteVaultWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		589FD04C2F181A3D00946FE6 /* QuoteVaultWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuoteVaultWidgetExtension.entitlements; sourceTree = "<group>"; };
 		58C1381A2F16BD0F008DD482 /* QuoteVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuoteVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C138272F16BD11008DD482 /* QuoteVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C138312F16BD11008DD482 /* QuoteVaultUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteVaultUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		589FCFE72F1817D600946FE6 /* Exceptions for "QuoteVaultWidget" folder in "QuoteVaultWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 589FCFD12F1817D400946FE6 /* QuoteVaultWidgetExtension */;
+		};
 		58F7E2D32F18096F00649302 /* Exceptions for "QuoteVault" folder in "QuoteVault" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -61,6 +81,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		589FCFD52F1817D400946FE6 /* QuoteVaultWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				589FCFE72F1817D600946FE6 /* Exceptions for "QuoteVaultWidget" folder in "QuoteVaultWidgetExtension" target */,
+			);
+			path = QuoteVaultWidget;
+			sourceTree = "<group>";
+		};
 		58C1381C2F16BD0F008DD482 /* QuoteVault */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -82,6 +110,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		589FCFCF2F1817D400946FE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				589FCFD42F1817D400946FE6 /* SwiftUI.framework in Frameworks */,
+				589FCFD32F1817D400946FE6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58C138172F16BD0F008DD482 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,9 +147,11 @@
 		58C138112F16BD0F008DD482 = {
 			isa = PBXGroup;
 			children = (
+				589FD04C2F181A3D00946FE6 /* QuoteVaultWidgetExtension.entitlements */,
 				58C1381C2F16BD0F008DD482 /* QuoteVault */,
 				58C1382A2F16BD11008DD482 /* QuoteVaultTests */,
 				58C138342F16BD11008DD482 /* QuoteVaultUITests */,
+				589FCFD52F1817D400946FE6 /* QuoteVaultWidget */,
 				58C138892F16CDCA008DD482 /* Frameworks */,
 				58C1381B2F16BD0F008DD482 /* Products */,
 			);
@@ -124,6 +163,7 @@
 				58C1381A2F16BD0F008DD482 /* QuoteVault.app */,
 				58C138272F16BD11008DD482 /* QuoteVaultTests.xctest */,
 				58C138312F16BD11008DD482 /* QuoteVaultUITests.xctest */,
+				589FCFD22F1817D400946FE6 /* QuoteVaultWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +180,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		589FCFD12F1817D400946FE6 /* QuoteVaultWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 589FCFE62F1817D600946FE6 /* Build configuration list for PBXNativeTarget "QuoteVaultWidgetExtension" */;
+			buildPhases = (
+				589FCFCE2F1817D400946FE6 /* Sources */,
+				589FCFCF2F1817D400946FE6 /* Frameworks */,
+				589FCFD02F1817D400946FE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				589FCFD52F1817D400946FE6 /* QuoteVaultWidget */,
+			);
+			name = QuoteVaultWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = QuoteVaultWidgetExtension;
+			productReference = 589FCFD22F1817D400946FE6 /* QuoteVaultWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		58C138192F16BD0F008DD482 /* QuoteVault */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58C1383B2F16BD11008DD482 /* Build configuration list for PBXNativeTarget "QuoteVault" */;
@@ -152,6 +214,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				589FCFE22F1817D600946FE6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				58C1381C2F16BD0F008DD482 /* QuoteVault */,
@@ -220,6 +283,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					589FCFD12F1817D400946FE6 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					58C138192F16BD0F008DD482 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -253,11 +319,19 @@
 				58C138192F16BD0F008DD482 /* QuoteVault */,
 				58C138262F16BD11008DD482 /* QuoteVaultTests */,
 				58C138302F16BD11008DD482 /* QuoteVaultUITests */,
+				589FCFD12F1817D400946FE6 /* QuoteVaultWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		589FCFD02F1817D400946FE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58C138182F16BD0F008DD482 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +356,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		589FCFCE2F1817D400946FE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58C138162F16BD0F008DD482 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +387,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		589FCFE22F1817D600946FE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 589FCFD12F1817D400946FE6 /* QuoteVaultWidgetExtension */;
+			targetProxy = 589FCFE12F1817D600946FE6 /* PBXContainerItemProxy */;
+		};
 		58C138292F16BD11008DD482 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 58C138192F16BD0F008DD482 /* QuoteVault */;
@@ -319,6 +405,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		589FCFE42F1817D600946FE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = QuoteVaultWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U27VXA72SS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuoteVaultWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QuoteVaultWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanan.quotevault.QuoteVaultWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		589FCFE52F1817D600946FE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = QuoteVaultWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U27VXA72SS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuoteVaultWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = QuoteVaultWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanan.quotevault.QuoteVaultWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		58C138392F16BD11008DD482 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -445,6 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuoteVault/QuoteVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U27VXA72SS;
@@ -475,6 +618,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuoteVault/QuoteVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U27VXA72SS;
@@ -575,6 +719,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		589FCFE62F1817D600946FE6 /* Build configuration list for PBXNativeTarget "QuoteVaultWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				589FCFE42F1817D600946FE6 /* Debug */,
+				589FCFE52F1817D600946FE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58C138152F16BD0F008DD482 /* Build configuration list for PBXProject "QuoteVault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -12,7 +12,7 @@ import WidgetKit
 struct QuoteVaultWidgetControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(
-            kind: "com.mydemo.app.QuoteVault.QuoteVaultWidget",
+            kind: "com.sanan.quotevault.QuoteVaultWidget",
             provider: Provider()
         ) { value in
             ControlWidgetToggle(

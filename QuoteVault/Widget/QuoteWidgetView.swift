@@ -6,25 +6,30 @@
 //
 
 import SwiftUICore
-
-
 struct QuoteWidgetView: View {
 
-    let entry: QuoteProvider.Entry
+    let entry: QuoteEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("“\(entry.quote.text)”")
-                .font(.headline)
-                .lineLimit(3)
+        ZStack {
+            LinearGradient(
+                colors: [.purple, .blue],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
 
-            Text("— \(entry.quote.author)")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            VStack(spacing: 8) {
+                Text("“\(entry.quote)”")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(4)
+
+                Text("— \(entry.author)")
+                    .font(.caption)
+                    .foregroundColor(.white.opacity(0.8))
+            }
+            .padding()
         }
-        .padding()
-        .widgetURL(
-            URL(string: "quotevault://quote?id=\(entry.quote.id.uuidString)")
-        )
     }
 }
