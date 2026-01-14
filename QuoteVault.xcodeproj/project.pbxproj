@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		58C1388B2F16CDD6008DD482 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 58C1388A2F16CDD6008DD482 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		58C138282F16BD11008DD482 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +33,22 @@
 		58C138312F16BD11008DD482 /* QuoteVaultUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteVaultUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		58671C802F17CFDE0020DB7C /* Exceptions for "QuoteVault" folder in "QuoteVault" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 58C138192F16BD0F008DD482 /* QuoteVault */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		58C1381C2F16BD0F008DD482 /* QuoteVault */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				58671C802F17CFDE0020DB7C /* Exceptions for "QuoteVault" folder in "QuoteVault" target */,
+			);
 			path = QuoteVault;
 			sourceTree = "<group>";
 		};
@@ -52,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58C1388B2F16CDD6008DD482 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +96,7 @@
 				58C1381C2F16BD0F008DD482 /* QuoteVault */,
 				58C1382A2F16BD11008DD482 /* QuoteVaultTests */,
 				58C138342F16BD11008DD482 /* QuoteVaultUITests */,
+				58C138892F16CDCA008DD482 /* Frameworks */,
 				58C1381B2F16BD0F008DD482 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +109,13 @@
 				58C138312F16BD11008DD482 /* QuoteVaultUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		58C138892F16CDCA008DD482 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +138,7 @@
 			);
 			name = QuoteVault;
 			packageProductDependencies = (
+				58C1388A2F16CDD6008DD482 /* Supabase */,
 			);
 			productName = QuoteVault;
 			productReference = 58C1381A2F16BD0F008DD482 /* QuoteVault.app */;
@@ -195,6 +222,9 @@
 			);
 			mainGroup = 58C138112F16BD0F008DD482;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				58C138882F16CDA7008DD482 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 58C1381B2F16BD0F008DD482 /* Products */;
 			projectDirPath = "";
@@ -400,6 +430,7 @@
 				DEVELOPMENT_TEAM = U27VXA72SS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuoteVault/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +459,7 @@
 				DEVELOPMENT_TEAM = U27VXA72SS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuoteVault/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		58C138882F16CDA7008DD482 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		58C1388A2F16CDD6008DD482 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58C138882F16CDA7008DD482 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 58C138122F16BD0F008DD482 /* Project object */;
 }
