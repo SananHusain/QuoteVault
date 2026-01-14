@@ -27,17 +27,34 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		58671CA82F17DC710020DB7C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		58671C912F17DC6E0020DB7C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		58671C932F17DC6F0020DB7C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		58C1381A2F16BD0F008DD482 /* QuoteVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuoteVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C138272F16BD11008DD482 /* QuoteVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C138312F16BD11008DD482 /* QuoteVaultUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteVaultUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		58671C802F17CFDE0020DB7C /* Exceptions for "QuoteVault" folder in "QuoteVault" target */ = {
+		58F7E2D32F18096F00649302 /* Exceptions for "QuoteVault" folder in "QuoteVault" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Widget/QuoteProvider.swift,
+				Widget/QuoteVaultWidget.swift,
+				Widget/QuoteWidgetView.swift,
 			);
 			target = 58C138192F16BD0F008DD482 /* QuoteVault */;
 		};
@@ -47,7 +64,7 @@
 		58C1381C2F16BD0F008DD482 /* QuoteVault */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				58671C802F17CFDE0020DB7C /* Exceptions for "QuoteVault" folder in "QuoteVault" target */,
+				58F7E2D32F18096F00649302 /* Exceptions for "QuoteVault" folder in "QuoteVault" target */,
 			);
 			path = QuoteVault;
 			sourceTree = "<group>";
@@ -114,6 +131,8 @@
 		58C138892F16CDCA008DD482 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58671C912F17DC6E0020DB7C /* WidgetKit.framework */,
+				58671C932F17DC6F0020DB7C /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,6 +147,7 @@
 				58C138162F16BD0F008DD482 /* Sources */,
 				58C138172F16BD0F008DD482 /* Frameworks */,
 				58C138182F16BD0F008DD482 /* Resources */,
+				58671CA82F17DC710020DB7C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -430,7 +450,8 @@
 				DEVELOPMENT_TEAM = U27VXA72SS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuoteVault/Info.plist;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save quote images to your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -441,7 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mydemo.app.QuoteVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanan.quotevault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -459,7 +480,8 @@
 				DEVELOPMENT_TEAM = U27VXA72SS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuoteVault/Info.plist;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save quote images to your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -470,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mydemo.app.QuoteVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanan.quotevault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

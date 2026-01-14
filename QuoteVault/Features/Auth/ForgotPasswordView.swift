@@ -4,8 +4,6 @@
 //
 //  Created by Sanan Husain on 14/01/26.
 //
-
-
 import SwiftUI
 
 struct ForgotPasswordView: View {
@@ -15,33 +13,49 @@ struct ForgotPasswordView: View {
     @State private var sent = false
 
     var body: some View {
-        VStack(spacing: 20) {
+        AuthBackgroundView {
+            VStack {
+                Spacer()
 
-            Text("Reset Password")
-                .font(.title)
-                .bold()
+                VStack(spacing: 20) {
 
-            TextField("Enter your email", text: $email)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-                .textFieldStyle(.roundedBorder)
+                    Text("Reset Password")
+                        .font(.title.bold())
+                        .foregroundColor(.white)
 
-            Button("Send Reset Email") {
-                Task {
-                    await authVM.resetPassword(email: email)
-                    sent = true
+                    AuthTextField(
+                        icon: "envelope",
+                        placeholder: "Enter your email",
+                        text: $email
+                    )
+
+                    Button {
+                        Task {
+                            await authVM.resetPassword(email: email)
+                            sent = true
+                        }
+                    } label: {
+                        Text("Send Reset Email")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(14)
+                    }
+
+                    if sent {
+                        Text("Reset email sent. Check your inbox.")
+                            .font(.caption)
+                            .foregroundColor(.green)
+                    }
                 }
-            }
-            .buttonStyle(.borderedProminent)
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(24)
+                .padding(.horizontal)
 
-            if sent {
-                Text("Reset email sent. Check your inbox.")
-                    .font(.caption)
-                    .foregroundColor(.green)
+                Spacer()
             }
-
-            Spacer()
         }
-        .padding()
     }
 }

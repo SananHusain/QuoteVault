@@ -7,6 +7,12 @@
 import SwiftUI
 import Supabase
 
+// MARK: - Supabase Join Wrapper
+struct CollectionQuoteWrapper: Decodable {
+    let quotes: Quote
+}
+
+
 struct CollectionDetailView: View {
 
     let collection: QuoteCollection
@@ -15,18 +21,48 @@ struct CollectionDetailView: View {
     private let client = SupabaseService.shared.client
 
     var body: some View {
-        List {
-            ForEach(quotes) { quote in
-                HStack {
-                    Text(quote.text)
-                    Spacer()
-                    Button(role: .destructive) {
-                        Task {
-                            await removeQuote(quote)
-                        }
-                    } label: {
-                        Image(systemName: "trash")
+        ScrollView {
+            VStack(spacing: 16) {
+
+                if quotes.isEmpty {
+                    VStack(spacing: 12) {
+                        Image(systemName: "text.quote")
+                            .font(.system(size: 40))
+                            .foregroundColor(.secondary)
+
+                        Text("No quotes in this collection")
+                            .font(.headline)
+
+                        Text("Add quotes using the folder icon")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.top, 80)
+                } else {
+                    LazyVStack(spacing: 16) {
+                        ForEach(quotes) { quote in
+                            QuoteCardView(quote: quote)
+                                .overlay(
+                                    HStack {
+                                        Spacer()
+                                        VStack {
+                                            Button(role: .destructive) {
+                                                Task {
+                                                    await removeQuote(quote)
+                                                }
+                                            } label: {
+                                                Image(systemName: "trash")
+                                                    .foregroundColor(.red)
+                                            }
+                                            .padding(10)
+                                            Spacer()
+                                        }
+                                    }
+                                )
+                                .padding(.horizontal)
+                        }
+                    }
+                    .padding(.top)
                 }
             }
         }
@@ -78,8 +114,4 @@ struct CollectionDetailView: View {
             print("❌ Remove quote failed:", error)
         }
     }
-}
-
-struct CollectionQuoteWrapper: Decodable {
-    let quotes: Quote
 }

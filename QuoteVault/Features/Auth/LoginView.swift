@@ -1,11 +1,3 @@
-//
-//  LoginView 2.swift
-//  QuoteVault
-//
-//  Created by Sanan Husain on 13/01/26.
-//
-
-
 import SwiftUI
 
 struct LoginView: View {
@@ -19,43 +11,76 @@ struct LoginView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            AuthBackgroundView {
+                VStack {
+                    Spacer()
 
-                Text("QuoteVault")
-                    .font(.largeTitle)
-                    .bold()
+                    VStack(spacing: 24) {
 
-                TextField("Email", text: $email)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                    .textFieldStyle(.roundedBorder)
+                        VStack(spacing: 8) {
+                            Text("QuoteVault")
+                                .font(.largeTitle.bold())
+                                .foregroundColor(.white)
 
-                SecureField("Password", text: $password)
-                    .textFieldStyle(.roundedBorder)
+                            Text("Discover • Save • Inspire")
+                                .foregroundColor(.white.opacity(0.8))
+                                .font(.subheadline)
+                        }
 
-                Button("Login") {
-                    Task {
-                        await authVM.login(email: email, password: password)
+                        VStack(spacing: 16) {
+                            AuthTextField(
+                                icon: "envelope",
+                                placeholder: "Email",
+                                text: $email
+                            )
+
+                            AuthTextField(
+                                icon: "lock",
+                                placeholder: "Password",
+                                text: $password,
+                                isSecure: true
+                            )
+                        }
+
+                        Button {
+                            Task {
+                                await authVM.login(email: email, password: password)
+                            }
+                        } label: {
+                            Text("Login")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .cornerRadius(14)
+                        }
+
+                        Button("Forgot Password?") {
+                            showForgot = true
+                        }
+                        .font(.caption)
+                        .foregroundColor(.gray)
+
                     }
-                }
-                .buttonStyle(.borderedProminent)
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(24)
+                    .padding(.horizontal)
 
-                Button("Forgot Password?") {
-                    showForgot = true
-                }
-                .font(.caption)
+                    Spacer()
 
-                Spacer()
-
-                Button("Create Account") {
-                    showSignup = true
+                    Button {
+                        showSignup = true
+                    } label: {
+                        Text("Create Account")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                    }
+                    .padding(.bottom, 30)
                 }
             }
-            .padding()
             .alert("Error", isPresented: .constant(authVM.errorMessage != nil)) {
-                Button("OK") {
-                    authVM.errorMessage = nil
-                }
+                Button("OK") { authVM.errorMessage = nil }
             } message: {
                 Text(authVM.errorMessage ?? "")
             }
